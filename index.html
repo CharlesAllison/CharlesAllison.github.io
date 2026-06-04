@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charles Allison Jr. — Biology & Biotechnology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #1a1a1a;
+      --gray-deep: #3d3d3d;
+      --gray-mid: #6b6b6b;
+      --gray-light: #a0a0a0;
+      --gray-pale: #e8e8e8;
+      --gray-faint: #f5f5f5;
+      --white: #ffffff;
+      --accent: #0a3d2b;
+      --accent-mid: #1a6645;
+      --accent-light: #e8f2ec;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-serif: 'DM Serif Display', serif;
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-pale);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray-deep);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.18s;
+      cursor: pointer;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--black); }
+    .nav-links a.active { font-weight: 500; }
+
+    /* PAGES */
+    .page { display: none; padding-top: var(--nav-h); min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      padding: 80px 48px 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .hero-inner { max-width: 640px; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      background: var(--accent-light);
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 6vw, 70px);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--gray-mid);
+      line-height: 1.65;
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--black);
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.18s, transform 0.12s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { background: var(--gray-deep); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--black);
+      padding: 13px 26px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1.5px solid var(--gray-pale);
+      transition: border-color 0.18s, transform 0.12s;
+    }
+    .btn-secondary:hover { border-color: var(--black); transform: translateY(-1px); }
+    .hero-scroll {
+      margin-top: 80px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gray-light);
+      font-size: 13px;
+    }
+    .hero-scroll span { display: inline-block; width: 28px; height: 1px; background: var(--gray-pale); }
+
+    /* SECTION SHARED */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      margin-bottom: 48px;
+      color: var(--black);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-bio p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--gray-deep);
+      margin-bottom: 20px;
+    }
+    .about-bio p:last-child { margin-bottom: 0; }
+    .about-details { border-top: 1px solid var(--gray-pale); }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-faint);
+      font-size: 14px;
+    }
+    .detail-label { color: var(--gray-light); font-weight: 400; }
+    .detail-value { color: var(--black); font-weight: 500; text-align: right; }
+    .detail-value a { color: var(--accent-mid); text-decoration: none; }
+    .detail-value a:hover { text-decoration: underline; }
+
+    /* SKILLS CHIPS */
+    .skills-section { margin-top: 56px; }
+    .skills-section h3 {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 16px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--gray-pale);
+      color: var(--gray-deep);
+      background: var(--white);
+    }
+    .chip.accent { background: var(--accent-light); border-color: var(--accent-light); color: var(--accent); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; gap: 2px; }
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--gray-faint);
+      cursor: pointer;
+      transition: padding-left 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card:first-child { border-top: 1px solid var(--gray-faint); }
+    .project-card:hover { padding-left: 12px; }
+    .project-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .project-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .project-date { font-size: 13px; color: var(--gray-light); }
+    .project-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .project-desc { font-size: 14px; color: var(--gray-mid); line-height: 1.6; max-width: 560px; }
+    .project-arrow {
+      font-size: 22px;
+      color: var(--gray-pale);
+      transition: color 0.18s, transform 0.18s;
+      flex-shrink: 0;
+    }
+    .project-card:hover .project-arrow { color: var(--black); transform: translateX(4px); }
+
+    /* PROJECT DETAIL */
+    .proj-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--gray-mid);
+      cursor: pointer; margin-bottom: 48px;
+      background: none; border: none; padding: 0;
+      transition: color 0.15s;
+    }
+    .proj-back:hover { color: var(--black); }
+    .proj-header { margin-bottom: 56px; }
+    .proj-header .section-label { margin-bottom: 12px; }
+    .proj-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+    .proj-header .lead {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--gray-mid);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+    .proj-meta-bar {
+      display: flex; gap: 40px; flex-wrap: wrap;
+      padding: 28px 0;
+      border-top: 1px solid var(--gray-pale);
+      border-bottom: 1px solid var(--gray-pale);
+      margin-bottom: 56px;
+    }
+    .proj-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .proj-meta-item .label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); }
+    .proj-meta-item .val { font-size: 14px; font-weight: 500; color: var(--black); }
+    .proj-body h2 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--black);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .proj-body p {
+      font-size: 16px; color: var(--gray-deep); line-height: 1.75;
+      margin-bottom: 20px; max-width: 680px;
+    }
+    .proj-body ul {
+      list-style: none; padding: 0; margin-bottom: 28px; max-width: 680px;
+    }
+    .proj-body ul li {
+      font-size: 15px; color: var(--gray-deep); line-height: 1.7;
+      padding: 10px 0 10px 20px;
+      border-bottom: 1px solid var(--gray-faint);
+      position: relative;
+    }
+    .proj-body ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    .pptx-embed {
+      border: 1px solid var(--gray-pale);
+      border-radius: 12px;
+      padding: 28px;
+      background: var(--gray-faint);
+      margin: 32px 0;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .pptx-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: var(--accent-light); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .pptx-icon svg { width: 24px; height: 24px; color: var(--accent); }
+    .pptx-info h3 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .pptx-info p { font-size: 13px; color: var(--gray-mid); margin: 0; }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--gray-faint);
+    }
+    .exp-item:first-of-type { border-top: 1px solid var(--gray-faint); }
+    .exp-date { font-size: 13px; color: var(--gray-light); padding-top: 4px; }
+    .exp-role { font-size: 18px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+    .exp-company {
+      font-size: 14px; color: var(--accent-mid); margin-bottom: 16px; font-weight: 400;
+    }
+    .exp-desc li {
+      font-size: 15px; color: var(--gray-deep); line-height: 1.7;
+      padding: 8px 0 8px 20px;
+      border-bottom: 1px solid var(--gray-faint);
+      position: relative; list-style: none;
+    }
+    .exp-desc li::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      width: 5px; height: 5px;
+      background: var(--gray-light);
+      border-radius: 50%; transform: translateY(-50%);
+    }
+    .exp-desc li:last-child { border-bottom: none; }
+    .certifications {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--gray-pale);
+    }
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+    .cert-card {
+      padding: 20px 20px;
+      border: 1px solid var(--gray-pale);
+      border-radius: 12px;
+      background: var(--gray-faint);
+    }
+    .cert-card .cert-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+    .cert-card .cert-type { font-size: 12px; color: var(--gray-light); }
+    .award-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    .award-card {
+      padding: 20px;
+      border: 1px solid var(--gray-pale);
+      border-radius: 12px;
+    }
+    .award-card .award-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+    .award-card .award-info { font-size: 12px; color: var(--gray-light); }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .contact-intro p {
+      font-size: 16px; line-height: 1.75; color: var(--gray-deep); margin-bottom: 16px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0; }
+    .contact-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--gray-faint);
+      text-decoration: none; color: inherit;
+      transition: padding-left 0.18s;
+    }
+    .contact-link:first-child { border-top: 1px solid var(--gray-faint); }
+    .contact-link:hover { padding-left: 8px; }
+    .cl-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); margin-bottom: 4px; }
+    .cl-val { font-size: 15px; font-weight: 500; color: var(--black); }
+    .cl-arrow { color: var(--gray-pale); font-size: 18px; transition: color 0.15s; }
+    .contact-link:hover .cl-arrow { color: var(--black); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--gray-faint);
+      padding: 32px 48px;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { font-size: 13px; color: var(--gray-light); }
+    footer a { color: var(--gray-mid); text-decoration: none; }
+    footer a:hover { color: var(--black); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .page.active .hero-tag { animation: fadeUp 0.5s ease both; }
+    .page.active .hero h1 { animation: fadeUp 0.5s 0.08s ease both; }
+    .page.active .hero-sub { animation: fadeUp 0.5s 0.16s ease both; }
+    .page.active .hero-actions { animation: fadeUp 0.5s 0.24s ease both; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+      .hero { padding: 48px 24px; }
+      .section { padding: 56px 24px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .cert-grid { grid-template-columns: 1fr 1fr; }
+      .award-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo" onclick="showPage('home')">CA</span>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('projects')" id="nav-projects">Projects</a></li>
+    <li><a onclick="showPage('experience')" id="nav-experience">Experience</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-inner">
+      <span class="hero-tag">Biology &amp; Biotechnology · WPI 2028</span>
+      <h1>Charles<br>Allison <em>Jr.</em></h1>
+      <p class="hero-sub">Biology &amp; Biotechnology student at Worcester Polytechnic Institute exploring molecular biology, ecological data analysis, and the intersection of science and communication.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('projects')">View Projects →</button>
+        <button class="btn-secondary" onclick="showPage('about')">About Me</button>
+        <a class="btn-secondary" href="Charles_Allison_Resume.pdf" download>↓ Download Résumé</a>
+      </div>
+      <div class="hero-scroll">
+        <span></span> Worcester Polytechnic Institute
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="section">
+    <div class="section-label">About</div>
+    <h2 class="section-title">A curiosity-driven scientist.</h2>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>I'm a Biology &amp; Biotechnology student at Worcester Polytechnic Institute (WPI), expected to graduate in May 2028. My academic work spans molecular biology, antimicrobial resistance, ecological data analysis, and biochemistry.</p>
+        <p>In the lab, I've isolated rifampicin-resistant <em>E. coli</em>, performed PCR and gel electrophoresis, purified plasmid DNA, and analyzed protein activity under varying conditions. Outside the lab, I work as a Marketing Assistant at WPI — creating content and measuring what actually resonates with people.</p>
+        <p>I'm drawn to work that bridges rigorous science with clear communication — whether that's producing a quantitative research report or editing a reel that keeps students engaged.</p>
+
+        <div class="skills-section">
+          <h3>Lab Skills</h3>
+          <div class="chips">
+            <span class="chip accent">PCR</span>
+            <span class="chip accent">Gel Electrophoresis</span>
+            <span class="chip accent">Aseptic Technique</span>
+            <span class="chip accent">Bacterial Culture</span>
+            <span class="chip accent">NanoDrop</span>
+            <span class="chip accent">Spectrophotometry</span>
+            <span class="chip accent">Plasmid Purification</span>
+            <span class="chip accent">Benchling</span>
+            <span class="chip accent">Restriction Digest</span>
+            <span class="chip accent">Protein Assays</span>
+            <span class="chip accent">Serial Dilution</span>
+            <span class="chip accent">Micropipetting</span>
+          </div>
+        </div>
+
+        <div class="skills-section" style="margin-top:28px">
+          <h3>Digital &amp; Software</h3>
+          <div class="chips">
+            <span class="chip">Microsoft Office</span>
+            <span class="chip">Google Workspace</span>
+            <span class="chip">Canva</span>
+            <span class="chip">Instagram Analytics</span>
+            <span class="chip">Video Editing</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="about-details">
+          <div class="detail-row">
+            <span class="detail-label">Institution</span>
+            <span class="detail-value">Worcester Polytechnic Institute</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Degree</span>
+            <span class="detail-value">B.S. Biology &amp; Biotechnology</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Expected</span>
+            <span class="detail-value">May 2028</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Location</span>
+            <span class="detail-value">Worcester, MA</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Email</span>
+            <span class="detail-value"><a href="mailto:callison@wpi.edu">callison@wpi.edu</a></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">LinkedIn</span>
+            <span class="detail-value"><a href="https://www.linkedin.com/in/charles-allison-jr" target="_blank">charles-allison-jr</a></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">GitHub</span>
+            <span class="detail-value"><a href="https://github.com/CharlesAllison" target="_blank">CharlesAllison</a></span>
+          </div>
+        </div>
+
+        <div style="margin-top:40px">
+          <a class="btn-primary" href="Charles_Allison_Resume.pdf" download style="display:inline-flex">↓ Download Résumé</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="page" id="page-projects">
+  <div class="section">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Research &amp; lab work.</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card" onclick="showProject('eco')">
+        <div>
+          <div class="project-meta">
+            <span class="project-tag">Data Analysis</span>
+            <span class="project-date">April 2026</span>
+          </div>
+          <div class="project-title">Quantitative Analysis of Ecological &amp; Environmental Datasets</div>
+          <div class="project-desc">Analyzed four ecological datasets on wildlife crossings, island fox populations, coral bleaching, and ecosystem carbon storage using descriptive statistics, t-tests, and ANOVA.</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+
+      <div class="project-card" onclick="showProject('amr')">
+        <div>
+          <div class="project-meta">
+            <span class="project-tag">Molecular Biology</span>
+            <span class="project-date">WPI Lab</span>
+          </div>
+          <div class="project-title">Antimicrobial Resistance &amp; Molecular Analysis</div>
+          <div class="project-desc">Isolated rifampicin-resistant <em>E. coli</em>, amplified the rpoB hotspot via PCR, and identified a C1535A point mutation causing an S512Y amino acid substitution linked to rifampicin resistance.</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+
+      <div class="project-card" onclick="showProject('dna')">
+        <div>
+          <div class="project-meta">
+            <span class="project-tag">Molecular Biology</span>
+            <span class="project-date">WPI Lab</span>
+          </div>
+          <div class="project-title">DNA Purification &amp; Restriction Mapping</div>
+          <div class="project-desc">Purified plasmid DNA from bacterial culture via alkaline lysis and spin column, quantified yield at 36.4 ng/µL (1.82 µg total), and performed restriction enzyme digestion for plasmid identity mapping.</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+
+      <div class="project-card" onclick="showProject('protein')">
+        <div>
+          <div class="project-meta">
+            <span class="project-tag">Biochemistry</span>
+            <span class="project-date">WPI Lab</span>
+          </div>
+          <div class="project-title">Protein Quantification &amp; Microbial Growth Analysis</div>
+          <div class="project-desc">Measured enzyme activity via spectrophotometry across temperature and pH conditions, calculated unknown protein concentration from a standard curve, and analyzed <em>E. coli</em> growth kinetics including CFU/mL calculations.</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT DETAIL: ECO -->
+<div class="page" id="page-proj-eco">
+  <div class="section">
+    <button class="proj-back" onclick="showPage('projects')">← Back to Projects</button>
+    <div class="proj-header">
+      <div class="section-label">Data Analysis · April 2026</div>
+      <h1>Quantitative Analysis of Ecological &amp; Environmental Datasets</h1>
+      <p class="lead">A portfolio research project applying inferential statistics to four real ecological datasets, producing a quantitative research report on conservation, biodiversity, and climate-related impacts.</p>
+    </div>
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><span class="label">Type</span><span class="val">Portfolio Research Project</span></div>
+      <div class="proj-meta-item"><span class="label">Date</span><span class="val">April 2026</span></div>
+      <div class="proj-meta-item"><span class="label">Methods</span><span class="val">Statistics, Hypothesis Testing</span></div>
+      <div class="proj-meta-item"><span class="label">Tools</span><span class="val">Excel / Google Workspace</span></div>
+    </div>
+    <div class="proj-body">
+      <h2>Overview</h2>
+      <p>This project involved independently sourcing and analyzing four ecological datasets to identify biological and environmental trends, evaluate group differences, and draw conclusions relevant to conservation and climate science.</p>
+
+      <h2>Datasets Analyzed</h2>
+      <ul>
+        <li>Wildlife crossings — evaluating effectiveness for species movement and road mortality reduction</li>
+        <li>Island fox populations — tracking population recovery and conservation outcomes</li>
+        <li>Coral bleaching — assessing bleaching events in relation to temperature and climate variables</li>
+        <li>Ecosystem carbon storage — comparing carbon sequestration across different ecosystem types</li>
+      </ul>
+
+      <h2>Methods</h2>
+      <ul>
+        <li>Organized and cleaned raw ecological data, identifying key variables and removing outliers</li>
+        <li>Applied descriptive statistics: mean, standard deviation, and variance across groups</li>
+        <li>Used t-tests and ANOVA to evaluate statistically significant group differences</li>
+        <li>Interpreted results using p-values and hypothesis testing frameworks</li>
+        <li>Produced data visualizations to communicate findings clearly</li>
+      </ul>
+
+      <h2>Report</h2>
+      <p>The full Environmental Data Analysis Report was compiled into a presentation. You can download it below.</p>
+      <div class="pptx-embed">
+        <div class="pptx-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <div class="pptx-info">
+          <h3>Environmental Data Analysis Report</h3>
+          <p>Quantitative ecological research presentation — April 2026</p>
+        </div>
+        <a class="btn-secondary" href="Environmental_Data_Analysis_Report.pptx" download style="margin-left:auto; flex-shrink:0">↓ Download</a>
+      </div>
+
+      <h2>Outcomes</h2>
+      <p>The project resulted in a full quantitative research report covering conservation status, biodiversity trends, and climate-related ecological impacts — demonstrating proficiency in applied biological statistics and scientific communication.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT DETAIL: AMR -->
+<div class="page" id="page-proj-amr">
+  <div class="section">
+    <button class="proj-back" onclick="showPage('projects')">← Back to Projects</button>
+    <div class="proj-header">
+      <div class="section-label">Molecular Biology · WPI Laboratory</div>
+      <h1>Antimicrobial Resistance &amp; Molecular Analysis</h1>
+      <p class="lead">Isolated rifampicin-resistant <em>E. coli</em> and identified the precise genetic mutation responsible — a C1535A point mutation in the rpoB gene causing an S512Y amino acid substitution.</p>
+    </div>
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><span class="label">Institution</span><span class="val">WPI</span></div>
+      <div class="proj-meta-item"><span class="label">Organism</span><span class="val">E. coli</span></div>
+      <div class="proj-meta-item"><span class="label">Antibiotic</span><span class="val">Rifampicin</span></div>
+      <div class="proj-meta-item"><span class="label">Analysis Tool</span><span class="val">Benchling</span></div>
+    </div>
+    <div class="proj-body">
+      <h2>Overview</h2>
+      <p>This laboratory project investigated the molecular basis of antibiotic resistance in <em>Escherichia coli</em>. By combining microbiological selection with molecular biology techniques, I traced resistance down to a single nucleotide change in the RNA polymerase gene.</p>
+
+      <h2>Methods</h2>
+      <ul>
+        <li>Isolated rifampicin-resistant colonies using aseptic technique, serial dilution, antibiotic selection plating, incubation, and colony counting</li>
+        <li>Amplified the rpoB hotspot region using PCR, optimizing conditions for clean amplification</li>
+        <li>Confirmed expected DNA fragment sizes via agarose gel electrophoresis</li>
+        <li>Purified PCR products for Sanger sequencing submission</li>
+        <li>Analyzed sequencing results in Benchling and identified mutation site</li>
+      </ul>
+
+      <h2>Key Finding</h2>
+      <p>Sequence analysis revealed a C1535A point mutation in the rpoB gene, causing an S512Y (serine-to-tyrosine) amino acid substitution at a known hotspot associated with rifampicin resistance. This mutation disrupts the drug-binding site on RNA polymerase, preventing rifampicin from blocking transcription.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT DETAIL: DNA -->
+<div class="page" id="page-proj-dna">
+  <div class="section">
+    <button class="proj-back" onclick="showPage('projects')">← Back to Projects</button>
+    <div class="proj-header">
+      <div class="section-label">Molecular Biology · WPI Laboratory</div>
+      <h1>DNA Purification &amp; Restriction Mapping</h1>
+      <p class="lead">Extracted, quantified, and characterized plasmid DNA from bacterial culture — confirming plasmid identity through restriction enzyme digestion and gel electrophoresis analysis.</p>
+    </div>
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><span class="label">Yield</span><span class="val">1.82 µg total</span></div>
+      <div class="proj-meta-item"><span class="label">Concentration</span><span class="val">36.4 ng/µL</span></div>
+      <div class="proj-meta-item"><span class="label">Quantification</span><span class="val">NanoDrop</span></div>
+      <div class="proj-meta-item"><span class="label">Verification</span><span class="val">Gel Electrophoresis</span></div>
+    </div>
+    <div class="proj-body">
+      <h2>Overview</h2>
+      <p>This experiment covered the complete workflow for plasmid DNA isolation and characterization — from bacterial lysis through restriction mapping — building proficiency in core molecular biology techniques.</p>
+
+      <h2>Methods</h2>
+      <ul>
+        <li>Grew bacterial culture and harvested cells for plasmid extraction</li>
+        <li>Performed alkaline lysis to disrupt cells and denature chromosomal DNA</li>
+        <li>Purified plasmid DNA using silica spin column purification</li>
+        <li>Quantified DNA concentration and purity using NanoDrop spectrophotometry (260/280 ratio)</li>
+        <li>Performed restriction enzyme digestion to generate a characteristic fragment pattern</li>
+        <li>Resolved fragments by agarose gel electrophoresis and compared to expected sizes for plasmid identity confirmation</li>
+      </ul>
+
+      <h2>Results</h2>
+      <p>Successfully purified plasmid DNA at 36.4 ng/µL with a total yield of 1.82 µg. Restriction digest fragment pattern matched the expected profile, confirming correct plasmid identity.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT DETAIL: PROTEIN -->
+<div class="page" id="page-proj-protein">
+  <div class="section">
+    <button class="proj-back" onclick="showPage('projects')">← Back to Projects</button>
+    <div class="proj-header">
+      <div class="section-label">Biochemistry · WPI Laboratory</div>
+      <h1>Protein Quantification &amp; Microbial Growth Analysis</h1>
+      <p class="lead">Measured enzyme activity across temperature and pH gradients via spectrophotometry, and analyzed <em>E. coli</em> growth kinetics through OD measurements, viable cell counts, and antibiotic comparisons.</p>
+    </div>
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><span class="label">Technique</span><span class="val">Spectrophotometry</span></div>
+      <div class="proj-meta-item"><span class="label">Variables</span><span class="val">Temperature &amp; pH</span></div>
+      <div class="proj-meta-item"><span class="label">Organism</span><span class="val">E. coli</span></div>
+      <div class="proj-meta-item"><span class="label">Metrics</span><span class="val">CFU/mL, OD600</span></div>
+    </div>
+    <div class="proj-body">
+      <h2>Overview</h2>
+      <p>This project combined biochemistry and microbiology to characterize both protein behavior and bacterial growth — two foundational skills for biotechnology research and diagnostics.</p>
+
+      <h2>Protein Quantification</h2>
+      <ul>
+        <li>Measured enzyme activity via spectrophotometry, tracking absorbance changes over time across temperature and pH conditions</li>
+        <li>Constructed a protein standard curve and used it to calculate unknown protein concentration in a sample</li>
+        <li>Compared results across protein assay methods and evaluated reliability</li>
+      </ul>
+
+      <h2>Microbial Growth Analysis</h2>
+      <ul>
+        <li>Practiced aseptic technique throughout bacterial culture preparation</li>
+        <li>Performed serial dilutions and plated for viable cell counts</li>
+        <li>Measured optical density (OD) at key growth time points to track growth phase</li>
+        <li>Calculated CFU/mL from plate counts to quantify live cell density</li>
+        <li>Compared growth in the presence vs. absence of antibiotics to evaluate inhibitory effects</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="page" id="page-experience">
+  <div class="section">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Work &amp; achievements.</h2>
+
+    <div class="exp-item">
+      <div class="exp-date">May 2025 – Present</div>
+      <div>
+        <div class="exp-role">Marketing Assistant</div>
+        <div class="exp-company">Worcester Polytechnic Institute — Worcester, MA</div>
+        <ul class="exp-desc">
+          <li>Create and edit Instagram reels, videos, and carousel posts for WPI events, resources, and campus life</li>
+          <li>Increased profile views, reach, and engagement analytics by over 15%</li>
+          <li>Use engagement metrics and informal student feedback to evaluate content performance, viewer drop-off, and topic resonance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="certifications">
+      <div class="section-label" style="margin-bottom:0">Certifications</div>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-name">BLS for Healthcare Providers</div>
+          <div class="cert-type">American Heart Association</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">OSHA Certified</div>
+          <div class="cert-type">Occupational Safety &amp; Health</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Diesel Technology</div>
+          <div class="cert-type">Technical Certification</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certifications">
+      <div class="section-label" style="margin-bottom:0">Awards</div>
+      <div class="award-grid">
+        <div class="award-card">
+          <div class="award-name">Freshman of the Year — WPI</div>
+          <div class="award-info">2025</div>
+        </div>
+        <div class="award-card">
+          <div class="award-name">Certificate of Recognition</div>
+          <div class="award-info">Mayor Joseph M. Petty · 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      <a class="btn-primary" href="Charles_Allison_Resume.pdf" download>↓ Download Full Résumé</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div class="section">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Get in touch.</h2>
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <p>I'm currently a sophomore at WPI and open to research opportunities, internships, and collaborations in biology, biotechnology, and related fields.</p>
+        <p>Whether you have a question about my work or just want to connect, feel free to reach out.</p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:callison@wpi.edu">
+          <div>
+            <div class="cl-label">Email</div>
+            <div class="cl-val">callison@wpi.edu</div>
+          </div>
+          <span class="cl-arrow">→</span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/charles-allison-jr" target="_blank">
+          <div>
+            <div class="cl-label">LinkedIn</div>
+            <div class="cl-val">charles-allison-jr</div>
+          </div>
+          <span class="cl-arrow">→</span>
+        </a>
+        <a class="contact-link" href="https://github.com/CharlesAllison" target="_blank">
+          <div>
+            <div class="cl-label">GitHub</div>
+            <div class="cl-val">CharlesAllison</div>
+          </div>
+          <span class="cl-arrow">→</span>
+        </a>
+        <a class="contact-link" href="tel:5085799494">
+          <div>
+            <div class="cl-label">Phone</div>
+            <div class="cl-val">(508) 579-9494</div>
+          </div>
+          <span class="cl-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Charles Allison Jr.</p>
+  <p><a href="mailto:callison@wpi.edu">callison@wpi.edu</a></p>
+</footer>
+
+<script>
+  const pages = ['home','about','projects','experience','contact'];
+  const projectPages = ['eco','amr','dna','protein'];
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const el = document.getElementById('page-' + name);
+    if (el) el.classList.add('active');
+    const nav = document.getElementById('nav-' + name);
+    if (nav) nav.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.pushState({}, '', '#' + name);
+  }
+
+  function showProject(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const el = document.getElementById('page-proj-' + name);
+    if (el) el.classList.add('active');
+    const nav = document.getElementById('nav-projects');
+    if (nav) nav.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Handle hash routing on load
+  const hash = window.location.hash.replace('#', '');
+  if (hash && pages.includes(hash)) showPage(hash);
+  else showPage('home');
+</script>
+
+</body>
+</html>
